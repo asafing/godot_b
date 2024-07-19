@@ -8,5 +8,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$SpotTexture/ProgressBar.value = $OccupyingMon.health
 
+
 func get_occupying_mon() -> Mon:
 	return $OccupyingMon

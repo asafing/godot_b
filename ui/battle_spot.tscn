@@ -32,3 +32,4 @@ show_percentage = false
 
 [node name="OccupyingMon" parent="." instance=ExtResource("3_00g0p")]
 position = Vector2(0, -50)
+health = 100.0

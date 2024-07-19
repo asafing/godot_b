@@ -84,7 +84,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="PlayerTopSpot1" parent="PlayerSpots/VBoxContainer/Panel1" instance=ExtResource("2_mw8nd")]
+[node name="PlayerTopSpot" parent="PlayerSpots/VBoxContainer/Panel1" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
 
 [node name="Panel2" type="Panel" parent="PlayerSpots/VBoxContainer"]
@@ -92,7 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 
-[node name="PlayerTopSpot2" parent="PlayerSpots/VBoxContainer/Panel2" instance=ExtResource("2_mw8nd")]
+[node name="PlayerTopSpot" parent="PlayerSpots/VBoxContainer/Panel2" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
 
 [node name="MainHud" parent="." instance=ExtResource("3_7eikg")]
