@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://fyyodskkmmy1"]
+
+[ext_resource type="Script" path="res://entities/mons/mon.gd" id="1_sdhpr"]
+[ext_resource type="Texture2D" uid="uid://c6ylxpswbe0fw" path="res://entities/mons/assets/convertible.png" id="2_nuajc"]
+
+[node name="Mon" type="Node2D"]
+script = ExtResource("1_sdhpr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("2_nuajc")

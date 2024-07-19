@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwaw5dr4d5vho"]
+
+[ext_resource type="Script" path="res://scenes/battle/battle_scene.gd" id="1_n1ggb"]
+[ext_resource type="PackedScene" uid="uid://dryux62kw2gys" path="res://ui/battle_spot.tscn" id="2_mw8nd"]
+[ext_resource type="PackedScene" uid="uid://bosxlnto5fa7b" path="res://ui/main_hud.tscn" id="3_7eikg"]
+
+[node name="BattleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n1ggb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.34902, 0.164706, 0.14902, 1)
+
+[node name="EnemySpots" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnemySpots"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Panel1" type="Panel" parent="EnemySpots/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="EnemyTopSpot" parent="EnemySpots/VBoxContainer/Panel1" instance=ExtResource("2_mw8nd")]
+scale = Vector2(0.8, 0.8)
+
+[node name="Panel2" type="Panel" parent="EnemySpots/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="EnemyBotSpot" parent="EnemySpots/VBoxContainer/Panel2" instance=ExtResource("2_mw8nd")]
+scale = Vector2(0.8, 0.8)
+
+[node name="PlayerSpots" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerSpots"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 960.0
+grow_vertical = 2
+alignment = 1
+
+[node name="Panel1" type="Panel" parent="PlayerSpots/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="PlayerTopSpot2" parent="PlayerSpots/VBoxContainer/Panel1" instance=ExtResource("2_mw8nd")]
+scale = Vector2(0.8, 0.8)
+
+[node name="Panel2" type="Panel" parent="PlayerSpots/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PlayerBotSpot2" parent="PlayerSpots/VBoxContainer/Panel2" instance=ExtResource("2_mw8nd")]
+scale = Vector2(0.8, 0.8)
+
+[node name="MainHud" parent="." instance=ExtResource("3_7eikg")]
+layout_mode = 1

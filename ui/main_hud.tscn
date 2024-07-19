@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://bosxlnto5fa7b"]
+
+[ext_resource type="Script" path="res://ui/main_hud.gd" id="1_dxolw"]
+[ext_resource type="Theme" uid="uid://birm3r7lgqv2p" path="res://ui/assets/bottom_hud.tres" id="2_gsc2s"]
+
+[node name="MainHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dxolw")
+
+[node name="ActionsGrid" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -260.0
+offset_right = 1000.0
+grow_vertical = 0
+theme = ExtResource("2_gsc2s")
+columns = 2
+
+[node name="Panel1" type="Panel" parent="ActionsGrid"]
+custom_minimum_size = Vector2(500, 130)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Attack1Button" type="Button" parent="ActionsGrid/Panel1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Astral Placeholder"
+
+[node name="Panel2" type="Panel" parent="ActionsGrid"]
+custom_minimum_size = Vector2(500, 130)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Attack2Button" type="Button" parent="ActionsGrid/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Beastkin Placehoder"
+
+[node name="Panel3" type="Panel" parent="ActionsGrid"]
+custom_minimum_size = Vector2(500, 130)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Attack3Button" type="Button" parent="ActionsGrid/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Bejeweled Placeholder"
+
+[node name="Panel4" type="Panel" parent="ActionsGrid"]
+custom_minimum_size = Vector2(500, 130)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Attack4Button" type="Button" parent="ActionsGrid/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "Placeholder Placeholder"
+
+[connection signal="pressed" from="ActionsGrid/Panel1/Attack1Button" to="." method="_on_attack_1_button_pressed"]
+[connection signal="pressed" from="ActionsGrid/Panel2/Attack2Button" to="." method="_on_attack_2_button_pressed"]
+[connection signal="pressed" from="ActionsGrid/Panel3/Attack3Button" to="." method="_on_attack_3_button_pressed"]
+[connection signal="pressed" from="ActionsGrid/Panel4/Attack4Button" to="." method="_on_attack_4_button_pressed"]

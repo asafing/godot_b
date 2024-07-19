@@ -1,0 +1,51 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://birm3r7lgqv2p"]
+
+[ext_resource type="FontFile" uid="uid://bgdrabdfv6e5n" path="res://ui/assets/fonts/OTF/dogicapixelbold.otf" id="1_i23gy"]
+[ext_resource type="Texture2D" uid="uid://bmx8avd4ynt0g" path="res://ui/assets/PNG/grey_button08.png" id="2_sfmtt"]
+[ext_resource type="Texture2D" uid="uid://b8q1isw6kwcke" path="res://ui/assets/PNG/grey_button07.png" id="3_3ksyh"]
+[ext_resource type="Texture2D" uid="uid://c3mmgmprambpp" path="res://ui/assets/PNG/grey_button09.png" id="4_g5o6v"]
+[ext_resource type="FontFile" uid="uid://c3irb61w8kvrl" path="res://ui/assets/fonts/FiraSans-Bold.ttf" id="5_hf6ds"]
+[ext_resource type="Texture2D" uid="uid://bm2bw2k7l8aor" path="res://ui/assets/border1.png" id="6_jc3ys"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vpkri"]
+texture = ExtResource("2_sfmtt")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a7gqk"]
+texture = ExtResource("3_3ksyh")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_go1qk"]
+texture = ExtResource("4_g5o6v")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3h1a"]
+texture = ExtResource("6_jc3ys")
+texture_margin_left = 33.0
+texture_margin_top = 33.0
+texture_margin_right = 33.0
+texture_margin_bottom = 33.0
+
+[resource]
+Button/colors/font_color = Color(0, 0.00970918, 0.164429, 1)
+Button/colors/font_hover_color = Color(0, 0.00784314, 0.164706, 1)
+Button/colors/font_pressed_color = Color(0, 0.00784314, 0.164706, 1)
+Button/font_sizes/font_size = 22
+Button/fonts/font = ExtResource("1_i23gy")
+Button/styles/hover = SubResource("StyleBoxTexture_vpkri")
+Button/styles/normal = SubResource("StyleBoxTexture_a7gqk")
+Button/styles/pressed = SubResource("StyleBoxTexture_go1qk")
+GridContainer/constants/h_separation = 0
+GridContainer/constants/v_separation = 0
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("5_hf6ds")
+Panel/styles/panel = SubResource("StyleBoxTexture_b3h1a")
