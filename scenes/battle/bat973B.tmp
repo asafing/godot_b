@@ -53,6 +53,8 @@ size_flags_vertical = 2
 
 [node name="EnemySpot" parent="EnemySpots/VBoxContainer/TopPanel" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
+spot_index = null
+spot_type = null
 
 [node name="BotPanel" type="Panel" parent="EnemySpots/VBoxContainer"]
 layout_mode = 2
@@ -62,6 +64,7 @@ size_flags_vertical = 8
 [node name="EnemySpot" parent="EnemySpots/VBoxContainer/BotPanel" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
 spot_index = 1
+spot_type = null
 
 [node name="PlayerSpots" type="Control" parent="."]
 layout_mode = 1
@@ -90,6 +93,7 @@ size_flags_vertical = 0
 
 [node name="PlayerSpot" parent="PlayerSpots/VBoxContainer/TopPanel" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
+spot_index = null
 spot_type = 1
 
 [node name="BotPanel" type="Panel" parent="PlayerSpots/VBoxContainer"]

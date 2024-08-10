@@ -20,7 +20,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color = Color(0.34902, 0.164706, 0.14902, 1)
 
 [node name="EnemySpots" type="Control" parent="."]
@@ -30,7 +29,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EnemySpots"]
 layout_mode = 1
@@ -46,22 +44,21 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
 
-[node name="TopPanel" type="Panel" parent="EnemySpots/VBoxContainer"]
+[node name="Panel1" type="Panel" parent="EnemySpots/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
 
-[node name="EnemySpot" parent="EnemySpots/VBoxContainer/TopPanel" instance=ExtResource("2_mw8nd")]
+[node name="EnemyTopSpot" parent="EnemySpots/VBoxContainer/Panel1" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
 
-[node name="BotPanel" type="Panel" parent="EnemySpots/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="EnemySpots/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="EnemySpot" parent="EnemySpots/VBoxContainer/BotPanel" instance=ExtResource("2_mw8nd")]
+[node name="EnemyBotSpot" parent="EnemySpots/VBoxContainer/Panel2" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
-spot_index = 1
 
 [node name="PlayerSpots" type="Control" parent="."]
 layout_mode = 1
@@ -70,7 +67,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerSpots"]
 layout_mode = 1
@@ -83,25 +79,21 @@ offset_bottom = 200.0
 grow_vertical = 2
 alignment = 1
 
-[node name="TopPanel" type="Panel" parent="PlayerSpots/VBoxContainer"]
+[node name="Panel1" type="Panel" parent="PlayerSpots/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="PlayerSpot" parent="PlayerSpots/VBoxContainer/TopPanel" instance=ExtResource("2_mw8nd")]
+[node name="PlayerTopSpot" parent="PlayerSpots/VBoxContainer/Panel1" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
-spot_type = 1
 
-[node name="BotPanel" type="Panel" parent="PlayerSpots/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="PlayerSpots/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 
-[node name="PlayerSpot" parent="PlayerSpots/VBoxContainer/BotPanel" instance=ExtResource("2_mw8nd")]
+[node name="PlayerTopSpot" parent="PlayerSpots/VBoxContainer/Panel2" instance=ExtResource("2_mw8nd")]
 scale = Vector2(0.8, 0.8)
-spot_index = 1
-spot_type = 1
 
 [node name="MainHud" parent="." instance=ExtResource("3_7eikg")]
 layout_mode = 1
-mouse_filter = 2

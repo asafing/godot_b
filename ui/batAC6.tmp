@@ -58,8 +58,16 @@ show_percentage = false
 [node name="OccupyingMon" parent="." instance=ExtResource("3_00g0p")]
 position = Vector2(0, -50)
 
+[node name="MouseFocusBox" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -250.0
+offset_top = -330.0
+offset_right = 250.0
+offset_bottom = 170.0
+mouse_force_pass_scroll_events = false
+
 [node name="SelectOutline" type="Panel" parent="."]
-visible = false
 clip_children = 1
 layout_mode = 0
 offset_left = -250.0
@@ -74,18 +82,8 @@ offset_right = 500.0
 offset_bottom = 500.0
 theme = SubResource("Theme_r8yk0")
 
-[node name="MouseFocusBox" type="Button" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = -250.0
-offset_top = -330.0
-offset_right = 250.0
-offset_bottom = 170.0
-mouse_force_pass_scroll_events = false
-
-[connection signal="mouse_entered" from="SelectOutline" to="." method="_on_select_outline_mouse_entered"]
-[connection signal="mouse_entered" from="SelectOutline/ColorRect" to="." method="_on_color_rect_mouse_entered"]
 [connection signal="mouse_entered" from="MouseFocusBox" to="." method="_on_mouse_focus_box_mouse_entered"]
 [connection signal="mouse_exited" from="MouseFocusBox" to="." method="_on_mouse_focus_box_mouse_exited"]
 [connection signal="pressed" from="MouseFocusBox" to="." method="_on_mouse_focus_box_pressed"]
+[connection signal="mouse_entered" from="SelectOutline" to="." method="_on_select_outline_mouse_entered"]
+[connection signal="mouse_entered" from="SelectOutline/ColorRect" to="." method="_on_color_rect_mouse_entered"]

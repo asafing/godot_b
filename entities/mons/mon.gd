@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Mon
 
 var skill_factory: Resource = preload("res://entities/mon_skills/mon_skill.tscn")
@@ -7,39 +7,43 @@ var mon_skills: Dictionary = {
 }
 
 @export var health: float = 100
-var action_keys: Array[String]
+var actions: Array[MonSkill]
 var max_action_count: int = 4
 var action_key: String
 
+var speed: int = 1
+var action_ai: MonAI
 
-# Called when the node enters the scene tree for the first time.
+var chosen_target: Mon
+var chosen_action_index: int
+
+
 func _ready() -> void:
-	push_action("BasicAttack")
-	push_action("BasicAttack")
-	push_action("BasicAttack")
-	push_action("BasicAttack")
+	action_ai = MonAI.new(self, get_tree().current_scene)
+	var skill_instance: MonSkill = skill_factory.instantiate()
+	skill_instance.set_script(mon_skills["BasicAttack"])
+	skill_instance.set_meta("movement_speed", 1100)
+	skill_instance.scale = Vector2(2.5, 2.5)
+	push_action(skill_instance)
+	push_action(skill_instance)
+	push_action(skill_instance)
+	push_action(skill_instance)
 
 
-func push_action(action_key: String) -> void:
-	action_keys.push_front(action_key)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func push_action(action_key: MonSkill) -> void:
+	actions.push_front(action_key)
 
 
 func take_damage(damage: float) -> void:
 	health -= damage
 
 
-func inflict_damage(target_mon: Mon, action_index: int) -> void:
-	target_mon.take_damage(5)
-	#var skill: MonSkill =  mon_skills[action_index]
+func apply_action() -> void:
+	var action: MonSkill = actions[chosen_action_index]
+	action.cast(self, chosen_target)
 
 
-func play_action_towards(target_mon: Mon, action_index: int) -> void:
-	var skill_instance: MonSkill = skill_factory.instantiate()
-	var action_script_key: String = action_keys[action_index]
-	skill_instance.set_script(mon_skills[action_script_key])
-	add_child(skill_instance)
+func play_action() -> void:
+	var skill_instance: MonSkill = actions[chosen_action_index]
+	skill_instance.rotation = get_angle_to(chosen_target.global_position)
+	add_child(skill_instance.duplicate())
