@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://fyyodskkmmy1"]
+[gd_scene load_steps=3 format=3 uid="uid://dp2vspco1n0n4"]
 
 [ext_resource type="Script" path="res://entities/mons/mon.gd" id="1_sdhpr"]
 [ext_resource type="Texture2D" uid="uid://c6ylxpswbe0fw" path="res://entities/mons/assets/convertible.png" id="2_nuajc"]

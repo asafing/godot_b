@@ -4,10 +4,7 @@ class_name BattleScene
 var active_mon: Mon
 var active_mon_index: int = 0
 
-#var chosen_action_indexes: Array[int] = []
-#var chosen_action_target_indexes: Array[int] = []
-#var current_action_playing_index: int = 0
-#var current_action_selecting_index: int = 0
+var mon_factory: Resource = preload("res://entities/mons/mon_scene.tscn")
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var player_mons: Array[Mon] = []
@@ -18,16 +15,23 @@ var turn: TurnData = TurnData.new()
 
 
 func _ready() -> void:
-	$EnemySpots/VBoxContainer/TopPanel/EnemySpot/OccupyingMon/Sprite.flip_h = true
-	$EnemySpots/VBoxContainer/BotPanel/EnemySpot/OccupyingMon/Sprite.flip_h = true
-	player_mons.push_back($PlayerSpots/VBoxContainer/TopPanel/PlayerSpot.get_occupying_mon())
-	player_mons.push_back($PlayerSpots/VBoxContainer/BotPanel/PlayerSpot.get_occupying_mon())
-	enemy_mons.push_back($EnemySpots/VBoxContainer/TopPanel/EnemySpot.get_occupying_mon())
-	enemy_mons.push_back($EnemySpots/VBoxContainer/BotPanel/EnemySpot.get_occupying_mon())
+	var mon1: Mon = mon_factory.instantiate()
+	var mon2: Mon = mon_factory.instantiate()
+	var mon3: Mon = mon_factory.instantiate()
+	var mon4: Mon = mon_factory.instantiate()
+	$PlayerSpots/VBoxContainer/TopPanel/PlayerSpot.set_occupying_mon(mon1)
+	$PlayerSpots/VBoxContainer/BotPanel/PlayerSpot.set_occupying_mon(mon2)
+	$EnemySpots/VBoxContainer/TopPanel/EnemySpot.set_occupying_mon(mon3)
+	$EnemySpots/VBoxContainer/BotPanel/EnemySpot.set_occupying_mon(mon4)
+	player_mons.push_back(mon1)
+	player_mons.push_back(mon2)
+	enemy_mons.push_back(mon3)
+	enemy_mons.push_back(mon4)
+	
 	player_mons[0].speed = 10
-	enemy_mons[0].speed = 3
-	player_mons[1].speed = 0
-	enemy_mons[1].speed = -1
+	enemy_mons[0].speed = 5
+	player_mons[1].speed = 2
+	enemy_mons[1].speed = 2
 	$MainHud.battle_scene = self
 	if turn.current_state == Enums.TurnState.NONE:
 		start_pre_turn()
@@ -47,6 +51,7 @@ func start_pre_turn() -> void:
 	print("Turn %d: Playing pre" % turn.current_turn)
 	for mon in enemy_mons:
 		mon.action_ai.update_move_and_target()
+	update_mons_turn_priorty()
 	start_action_select()
 
 
@@ -57,7 +62,8 @@ func start_action_select() -> void:
 
 
 func start_target_select() -> void:
-	$MainHud.visible = false
+	turn.current_state = Enums.TurnState.TARGET_SELECT
+	#$MainHud.visible = false
 	var possible_targets: Enums.PossibleTargets = (
 		active_mon.actions[turn.action_selecting_index].possible_targets
 	)
@@ -70,18 +76,22 @@ func start_target_select() -> void:
 		$EnemySpots/VBoxContainer/BotPanel/EnemySpot/MouseFocusBox.visible = true
 	if (
 		possible_targets == Enums.PossibleTargets.Ally
-		|| possible_targets == Enums.PossibleTargets.AllOthers
 		|| possible_targets == Enums.PossibleTargets.All
 	):
 		$PlayerSpots/VBoxContainer/TopPanel/PlayerSpot/MouseFocusBox.visible = true
 		$PlayerSpots/VBoxContainer/BotPanel/PlayerSpot/MouseFocusBox.visible = true
+	if possible_targets == Enums.PossibleTargets.AllOthers:
+		if active_mon_index == 0:
+			$PlayerSpots/VBoxContainer/BotPanel/PlayerSpot/MouseFocusBox.visible = true
+		elif active_mon_index == 1:
+			$PlayerSpots/VBoxContainer/TopPanel/PlayerSpot/MouseFocusBox.visible = true
+			
 
 
 func start_playing_actions() -> void:
 	turn.current_state = Enums.TurnState.PLAY_ACTIONS
 	print("Turn %d: Playing actions" % turn.current_turn)
 	$MainHud.visible = false
-	update_mons_turn_priorty()
 	mons_turn_order[0].play_action()
 
 
@@ -90,22 +100,6 @@ func start_post_turn() -> void:
 	turn.action_playing_index = 0
 	print("Turn %d: Playing post turn" % turn.current_turn)
 	start_pre_turn()
-
-
-func _sort_by_speed(a: Mon, b: Mon) -> bool:
-	if a.speed > b.speed:
-		return true
-	elif a.speed == b.speed:
-		if rng.randi_range(0, 1) == 1:
-			return true
-		else:
-			return false
-	return false
-
-
-func update_mons_turn_priorty() -> void:
-	self.mons_turn_order = (player_mons + enemy_mons)
-	self.mons_turn_order.sort_custom(_sort_by_speed)
 
 
 # Triggers as callback when action is selected from the HUD
@@ -139,3 +133,17 @@ func on_target_select(spot_index: int, mon_target_type: Enums.MonType) -> void:
 	$PlayerSpots/VBoxContainer/BotPanel/PlayerSpot/MouseFocusBox.visible = false
 	$EnemySpots/VBoxContainer/TopPanel/EnemySpot/MouseFocusBox.visible = false
 	$EnemySpots/VBoxContainer/BotPanel/EnemySpot/MouseFocusBox.visible = false
+
+func _sort_by_speed(a: Mon, b: Mon) -> bool:
+	if a.speed > b.speed:
+		return true
+	elif a.speed == b.speed:
+		return [a, b].pick_random() == a
+	return false
+
+
+func update_mons_turn_priorty() -> void:
+	self.mons_turn_order = (player_mons + enemy_mons)
+	self.mons_turn_order.sort_custom(_sort_by_speed)
+	for mon_turn in range(len(mons_turn_order)):
+		mons_turn_order[mon_turn].battle_spot.set_playing_order(mon_turn)

@@ -17,6 +17,7 @@ var action_ai: MonAI
 var chosen_target: Mon
 var chosen_action_index: int
 
+var battle_spot: BattleSpot
 
 func _ready() -> void:
 	action_ai = MonAI.new(self, get_tree().current_scene)
@@ -28,6 +29,8 @@ func _ready() -> void:
 	push_action(skill_instance)
 	push_action(skill_instance)
 	push_action(skill_instance)
+	if battle_spot != null and battle_spot.spot_type == Enums.MonType.Enemy:
+		$Sprite2D.flip_h = true
 
 
 func push_action(action_key: MonSkill) -> void:

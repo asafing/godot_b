@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bosxlnto5fa7b"]
+[gd_scene load_steps=8 format=3 uid="uid://bosxlnto5fa7b"]
 
 [ext_resource type="Script" path="res://ui/main_hud.gd" id="1_dxolw"]
 [ext_resource type="Theme" uid="uid://birm3r7lgqv2p" path="res://ui/assets/bottom_hud.tres" id="2_gsc2s"]
+[ext_resource type="Script" path="res://globals/curved_line_2d.gd" id="3_24omm"]
+[ext_resource type="Texture2D" uid="uid://cxvc75hte0pdu" path="res://ui/assets/target_line_texture.png" id="3_k2i50"]
+[ext_resource type="Texture2D" uid="uid://b3lbvtwskgilo" path="res://ui/assets/target_line_end.png" id="5_c60we"]
+[ext_resource type="Texture2D" uid="uid://clclbb0pnk7mc" path="res://ui/assets/target_line_start.png" id="6_sgeu8"]
+
+[sub_resource type="Curve" id="Curve_86kr2"]
+_data = [Vector2(0.00479616, 0.747573), 0.0, 0.0, 0, 0, Vector2(0.851319, 0.946673), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="MainHud" type="Control"]
 layout_mode = 3
@@ -20,6 +28,8 @@ anchor_bottom = 1.0
 offset_top = -260.0
 offset_right = 1000.0
 grow_vertical = 0
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 theme = ExtResource("2_gsc2s")
 columns = 2
 
@@ -55,6 +65,28 @@ grow_vertical = 2
 focus_mode = 0
 text = "Beastkin Placehoder"
 
+[node name="Control" type="Control" parent="ActionsGrid/Panel2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TargetSelectLine" type="Line2D" parent="ActionsGrid/Panel2/Control"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 0, 0)
+width = 122.0
+width_curve = SubResource("Curve_86kr2")
+texture = ExtResource("3_k2i50")
+texture_mode = 1
+script = ExtResource("3_24omm")
+
+[node name="LineEnd" type="Sprite2D" parent="ActionsGrid/Panel2/Control/TargetSelectLine"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_c60we")
+
+[node name="LineStart" type="Sprite2D" parent="ActionsGrid/Panel2/Control/TargetSelectLine"]
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("6_sgeu8")
+
 [node name="Panel3" type="Panel" parent="ActionsGrid"]
 custom_minimum_size = Vector2(500, 130)
 layout_direction = 1
@@ -87,6 +119,8 @@ grow_vertical = 2
 focus_mode = 0
 text = "Placeholder Placeholder"
 
+[connection signal="mouse_entered" from="ActionsGrid" to="." method="_on_actions_grid_mouse_entered"]
+[connection signal="mouse_exited" from="ActionsGrid" to="." method="_on_actions_grid_mouse_exited"]
 [connection signal="pressed" from="ActionsGrid/Panel1/Attack1Button" to="." method="_on_attack_1_button_pressed"]
 [connection signal="pressed" from="ActionsGrid/Panel2/Attack2Button" to="." method="_on_attack_2_button_pressed"]
 [connection signal="pressed" from="ActionsGrid/Panel3/Attack3Button" to="." method="_on_attack_3_button_pressed"]

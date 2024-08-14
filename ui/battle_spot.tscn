@@ -1,19 +1,56 @@
-[gd_scene load_steps=11 format=3 uid="uid://dryux62kw2gys"]
+[gd_scene load_steps=17 format=3 uid="uid://dryux62kw2gys"]
 
 [ext_resource type="Script" path="res://ui/battle_spot.gd" id="1_ukyic"]
 [ext_resource type="Texture2D" uid="uid://ceul7bof4dnb4" path="res://scenes/assets/battle_spot.png" id="2_gs71j"]
-[ext_resource type="PackedScene" uid="uid://fyyodskkmmy1" path="res://entities/mons/mon.tscn" id="3_00g0p"]
+[ext_resource type="Texture2D" uid="uid://1kx0msbjuedk" path="res://ui/assets/flat-arrow-bullet-point-collection.png" id="2_prtr2"]
+[ext_resource type="PackedScene" uid="uid://dl1or3cs3l04d" path="res://entities/mons/mon_scene.tscn" id="4_fgo1c"]
 [ext_resource type="Shader" path="res://shaders/dotted_rect.gdshader" id="4_xbos6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyfo7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
 
 [sub_resource type="Theme" id="Theme_7fccs"]
 Panel/styles/panel = SubResource("StyleBoxFlat_yyfo7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri007"]
+atlas = ExtResource("2_prtr2")
+region = Rect2(80, 0, 403, 296)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmfie"]
+atlas = ExtResource("2_prtr2")
+region = Rect2(483, 0, 403, 296)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgmww"]
+atlas = ExtResource("2_prtr2")
+region = Rect2(886, 0, 403, 296)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3qy2"]
+atlas = ExtResource("2_prtr2")
+region = Rect2(1289, 0, 403, 296)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vqccn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri007")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmfie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgmww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3qy2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6mnr"]
 bg_color = Color(0.87451, 0.109804, 0.172549, 1)
@@ -24,11 +61,11 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_p6mnr")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifjc4"]
 shader = ExtResource("4_xbos6")
 shader_parameter/color = Color(1, 0.0745098, 0.027451, 1)
-shader_parameter/inner_stroke_thickness = 1.5
+shader_parameter/inner_stroke_thickness = 1.6
 shader_parameter/inner_stroke_opacity = 1.0
-shader_parameter/inside_opacity = 1.0
+shader_parameter/inside_opacity = 0.9
 shader_parameter/frequency = 22.0
-shader_parameter/phase_speed = 3.0
+shader_parameter/phase_speed = 2.5
 
 [sub_resource type="Theme" id="Theme_r8yk0"]
 
@@ -37,6 +74,11 @@ layout_mode = 3
 anchors_preset = 0
 theme = SubResource("Theme_7fccs")
 script = ExtResource("1_ukyic")
+
+[node name="TurnOrder" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, -285)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_vqccn")
 
 [node name="SpotTexture" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
@@ -55,33 +97,32 @@ theme = SubResource("Theme_42rrf")
 value = 50.0
 show_percentage = false
 
-[node name="OccupyingMon" parent="." instance=ExtResource("3_00g0p")]
-position = Vector2(0, -50)
+[node name="OccupyingMon" parent="." instance=ExtResource("4_fgo1c")]
 
 [node name="SelectOutline" type="Panel" parent="."]
 visible = false
 clip_children = 1
 layout_mode = 0
-offset_left = -250.0
-offset_top = -330.0
-offset_right = 250.0
-offset_bottom = 170.0
+offset_left = -165.0
+offset_top = -184.0
+offset_right = 175.0
+offset_bottom = 86.0
 
 [node name="ColorRect" type="ColorRect" parent="SelectOutline"]
 material = SubResource("ShaderMaterial_ifjc4")
 layout_mode = 0
-offset_right = 500.0
-offset_bottom = 500.0
+offset_right = 340.0
+offset_bottom = 270.0
 theme = SubResource("Theme_r8yk0")
 
 [node name="MouseFocusBox" type="Button" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = -250.0
-offset_top = -330.0
-offset_right = 250.0
-offset_bottom = 170.0
+offset_left = -165.0
+offset_top = -184.0
+offset_right = 175.0
+offset_bottom = 86.0
 mouse_force_pass_scroll_events = false
 
 [connection signal="mouse_entered" from="SelectOutline" to="." method="_on_select_outline_mouse_entered"]
