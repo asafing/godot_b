@@ -19,6 +19,7 @@ func set_occupying_mon(mon: Mon) -> void:
 	occupying_mon = mon
 	occupying_mon.battle_spot = self
 	add_child(occupying_mon)
+	#$OccupyingMon.replace_by(mon)
 	$SpotTexture/ProgressBar.max_value = occupying_mon.health
 
 func _on_mouse_focus_box_pressed() -> void:

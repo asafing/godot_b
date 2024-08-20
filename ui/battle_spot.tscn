@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dryux62kw2gys"]
+[gd_scene load_steps=16 format=3 uid="uid://dryux62kw2gys"]
 
 [ext_resource type="Script" path="res://ui/battle_spot.gd" id="1_ukyic"]
 [ext_resource type="Texture2D" uid="uid://ceul7bof4dnb4" path="res://scenes/assets/battle_spot.png" id="2_gs71j"]
 [ext_resource type="Texture2D" uid="uid://1kx0msbjuedk" path="res://ui/assets/flat-arrow-bullet-point-collection.png" id="2_prtr2"]
-[ext_resource type="PackedScene" uid="uid://dl1or3cs3l04d" path="res://entities/mons/mon_scene.tscn" id="4_fgo1c"]
 [ext_resource type="Shader" path="res://shaders/dotted_rect.gdshader" id="4_xbos6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyfo7"]
@@ -96,8 +95,6 @@ grow_horizontal = 2
 theme = SubResource("Theme_42rrf")
 value = 50.0
 show_percentage = false
-
-[node name="OccupyingMon" parent="." instance=ExtResource("4_fgo1c")]
 
 [node name="SelectOutline" type="Panel" parent="."]
 visible = false

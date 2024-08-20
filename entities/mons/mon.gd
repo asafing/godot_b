@@ -23,14 +23,14 @@ func _ready() -> void:
 	action_ai = MonAI.new(self, get_tree().current_scene)
 	var skill_instance: MonSkill = skill_factory.instantiate()
 	skill_instance.set_script(mon_skills["BasicAttack"])
-	skill_instance.set_meta("movement_speed", 1100)
+	skill_instance.set_meta("movement_speed", 2200)
 	skill_instance.scale = Vector2(2.5, 2.5)
 	push_action(skill_instance)
 	push_action(skill_instance)
 	push_action(skill_instance)
 	push_action(skill_instance)
 	if battle_spot != null and battle_spot.spot_type == Enums.MonType.Enemy:
-		$Sprite2D.flip_h = true
+		$Sprite.flip_h = true
 
 
 func push_action(action_key: MonSkill) -> void:
@@ -47,6 +47,8 @@ func apply_action() -> void:
 
 
 func play_action() -> void:
+	if battle_spot != null and battle_spot.spot_type == Enums.MonType.Enemy:
+		$Sprite.flip_h = true
 	var skill_instance: MonSkill = actions[chosen_action_index]
 	skill_instance.rotation = get_angle_to(chosen_target.global_position)
 	add_child(skill_instance.duplicate())

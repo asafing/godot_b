@@ -4,7 +4,7 @@ class_name BattleScene
 var active_mon: Mon
 var active_mon_index: int = 0
 
-var mon_factory: Resource = preload("res://entities/mons/mon_scene.tscn")
+var mon_factory: Resource = preload("res://entities/mons/mon.tscn")
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var player_mons: Array[Mon] = []
