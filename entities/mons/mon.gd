@@ -11,7 +11,7 @@ var actions: Array[MonSkill]
 var max_action_count: int = 4
 var action_key: String
 
-var speed: int = 1
+var energy: int = 3
 var action_ai: MonAI
 
 var chosen_target: Mon

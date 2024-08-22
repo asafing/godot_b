@@ -6,11 +6,13 @@ var movement_speed: float
 var skill_type: Enums.SkillType
 var base_damage: float = 0
 var possible_targets: Enums.PossibleTargets
+var energy_cost: int = 0
 
 
-func _on_init(name: String, description: String) -> void:
+func _on_init(name: String, description: String, energy_cost: int) -> void:
 	self.description = description
 	self.name = name
+	self.energy_cost = energy_cost
 
 
 func _ready() -> void:
@@ -30,6 +32,7 @@ func calculate_damage(source_mon: Mon, target_mon: Mon) -> float:
 func cast(caster: Mon, target: Mon) -> void:
 	var damage: float = calculate_damage(caster, target)
 	target.take_damage(damage)
+	caster.energy -= energy_cost
 
 
 func get_description() -> String:

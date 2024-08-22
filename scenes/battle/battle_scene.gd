@@ -28,10 +28,6 @@ func _ready() -> void:
 	enemy_mons.push_back(mon3)
 	enemy_mons.push_back(mon4)
 	
-	player_mons[0].speed = 10
-	enemy_mons[0].speed = 5
-	player_mons[1].speed = 2
-	enemy_mons[1].speed = 2
 	$MainHud.battle_scene = self
 	if turn.current_state == Enums.TurnState.NONE:
 		start_pre_turn()
@@ -51,7 +47,6 @@ func start_pre_turn() -> void:
 	print("Turn %d: Playing pre" % turn.current_turn)
 	for mon in enemy_mons:
 		mon.action_ai.update_move_and_target()
-	update_mons_turn_priorty()
 	start_action_select()
 
 
@@ -134,16 +129,17 @@ func on_target_select(spot_index: int, mon_target_type: Enums.MonType) -> void:
 	$EnemySpots/VBoxContainer/TopPanel/EnemySpot/MouseFocusBox.visible = false
 	$EnemySpots/VBoxContainer/BotPanel/EnemySpot/MouseFocusBox.visible = false
 
-func _sort_by_speed(a: Mon, b: Mon) -> bool:
-	if a.speed > b.speed:
-		return true
-	elif a.speed == b.speed:
-		return [a, b].pick_random() == a
-	return false
-
-
-func update_mons_turn_priorty() -> void:
-	self.mons_turn_order = (player_mons + enemy_mons)
-	self.mons_turn_order.sort_custom(_sort_by_speed)
-	for mon_turn in range(len(mons_turn_order)):
-		mons_turn_order[mon_turn].battle_spot.set_playing_order(mon_turn)
+# Currently disabled speed mechanic
+#func _sort_by_speed(a: Mon, b: Mon) -> bool:
+	#if a.speed > b.speed:
+		#return true
+	#elif a.speed == b.speed:
+		#return [a, b].pick_random() == a
+	#return false
+#
+#
+#func update_mons_turn_priorty() -> void:
+	#self.mons_turn_order = (player_mons + enemy_mons)
+	#self.mons_turn_order.sort_custom(_sort_by_speed)
+	#for mon_turn in range(len(mons_turn_order)):
+		#mons_turn_order[mon_turn].battle_spot.set_playing_order(mon_turn)
