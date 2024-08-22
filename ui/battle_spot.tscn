@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/battle_spot.gd" id="1_ukyic"]
 [ext_resource type="Texture2D" uid="uid://ceul7bof4dnb4" path="res://scenes/assets/battle_spot.png" id="2_gs71j"]
-[ext_resource type="Texture2D" uid="uid://1kx0msbjuedk" path="res://ui/assets/flat-arrow-bullet-point-collection.png" id="2_prtr2"]
+[ext_resource type="Texture2D" uid="uid://b8p4stfl16f8" path="res://ui/assets/flat-arrow-bullet-point-collection.png" id="2_prtr2"]
 [ext_resource type="Shader" path="res://shaders/dotted_rect.gdshader" id="4_xbos6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyfo7"]

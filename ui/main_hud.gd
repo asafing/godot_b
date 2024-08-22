@@ -6,7 +6,7 @@ var mouse_in_grid: bool
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var line: CurvedLine2D = $ActionsGrid/Panel2/Control/TargetSelectLine
 	line.target_point = get_global_mouse_position() - line.global_position
 	$ActionsGrid/Panel2/Control/TargetSelectLine/LineEnd.position = line.points[-1]

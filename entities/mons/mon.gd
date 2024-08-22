@@ -6,10 +6,9 @@ var mon_skills: Dictionary = {
 	"BasicAttack": preload("res://entities/mon_skills/basic_attack.gd"),
 }
 
-@export var health: float = 100
+var health: float = 100
 var actions: Array[MonSkill]
 var max_action_count: int = 4
-var action_key: String
 
 var energy: int = 3
 var action_ai: MonAI

@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://ui/main_hud.gd" id="1_dxolw"]
 [ext_resource type="Theme" uid="uid://birm3r7lgqv2p" path="res://ui/assets/bottom_hud.tres" id="2_gsc2s"]
 [ext_resource type="Script" path="res://globals/curved_line_2d.gd" id="3_24omm"]
-[ext_resource type="Texture2D" uid="uid://cxvc75hte0pdu" path="res://ui/assets/target_line_texture.png" id="3_k2i50"]
-[ext_resource type="Texture2D" uid="uid://b3lbvtwskgilo" path="res://ui/assets/target_line_end.png" id="5_c60we"]
-[ext_resource type="Texture2D" uid="uid://clclbb0pnk7mc" path="res://ui/assets/target_line_start.png" id="6_sgeu8"]
+[ext_resource type="Texture2D" uid="uid://r0642781prnm" path="res://ui/assets/target_line_texture.png" id="3_k2i50"]
+[ext_resource type="Texture2D" uid="uid://hn24ubelgvxc" path="res://ui/assets/target_line_end.png" id="5_c60we"]
+[ext_resource type="Texture2D" uid="uid://pp8h37hypdtx" path="res://ui/assets/target_line_start.png" id="6_sgeu8"]
 
 [sub_resource type="Curve" id="Curve_86kr2"]
-_data = [Vector2(0.00479616, 0.747573), 0.0, 0.0, 0, 0, Vector2(0.851319, 0.946673), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.511822), 0.0, 0.0, 0, 0, Vector2(0.851319, 0.946673), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="MainHud" type="Control"]
@@ -73,7 +73,7 @@ offset_bottom = 40.0
 [node name="TargetSelectLine" type="Line2D" parent="ActionsGrid/Panel2/Control"]
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0)
-width = 122.0
+width = 150.0
 width_curve = SubResource("Curve_86kr2")
 texture = ExtResource("3_k2i50")
 texture_mode = 1

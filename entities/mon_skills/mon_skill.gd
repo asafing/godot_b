@@ -2,6 +2,7 @@ extends Node2D
 class_name MonSkill
 
 var description: String
+var skill_name: String
 var movement_speed: float
 var skill_type: Enums.SkillType
 var base_damage: float = 0
@@ -9,11 +10,10 @@ var possible_targets: Enums.PossibleTargets
 var energy_cost: int = 0
 
 
-func _on_init(name: String, description: String, energy_cost: int) -> void:
+func _on_init(skill_name: String, description: String, energy_cost: int) -> void:
 	self.description = description
-	self.name = name
+	self.skill_name = skill_name
 	self.energy_cost = energy_cost
-
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("repeat")

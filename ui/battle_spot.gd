@@ -3,19 +3,20 @@ class_name BattleSpot
 
 @export var spot_index: int = 0
 @export var spot_type: Enums.MonType = Enums.MonType.Enemy
-var occupying_mon: Mon = Mon.new()
+var occupying_mon: Mon
 
 func _ready() -> void:
 	$TurnOrder.pause()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if occupying_mon != null:
 		$SpotTexture/ProgressBar.value = occupying_mon.health
 
 
 func set_occupying_mon(mon: Mon) -> void:
-	remove_child(occupying_mon)
-	occupying_mon.queue_free()
+	if occupying_mon != null:
+		remove_child(occupying_mon)
+		occupying_mon.queue_free()
 	occupying_mon = mon
 	occupying_mon.battle_spot = self
 	add_child(occupying_mon)
